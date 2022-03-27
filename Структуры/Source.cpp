@@ -13,13 +13,11 @@ struct movies {
 };
 
 //Функция выводить информацию об объекте
-void showMovies(movies a) {
-	movies* pr = &a;
-	cout<<"|" << a.title << "|" << pr->year << "г|" << a.genre << "|" << a.duration << " мин.|" << a.price << " руб.|";
+void showMovies(movies &a) {
+	cout<<"|" << a.title << "|" << a.year << "г|" << a.genre << "|" << a.duration << " мин.|" << a.price << " руб.|";
 }
 //Функция нахождения объекта с наибольшей ценой
-void expensive(movies b, movies c, movies d) {
-	int max=0;
+void expensive(movies &b, movies &c, movies &d) {
 	if (b.price > c.price&&b.price>d.price)
 		 showMovies(b);
 	if (c.price > b.price && c.price > d.price)
@@ -27,7 +25,7 @@ void expensive(movies b, movies c, movies d) {
 	if (d.price > b.price && d.price > c.price)
 		showMovies(d);
 }
-void updateInfo(movies e) {
+void updateInfo(movies &e) {
 	movies* pe = &e;
 	cout << "Выберите, какую информацию о фильме\nхотите обновить:\n\n";
 	cout << "1.Название;\n2.Год выхода;\n3.Жанр;\n4.Продолжительность;\n5.Цена за диск.\n";
@@ -35,14 +33,14 @@ void updateInfo(movies e) {
 	int q;
 	cin >> q;
 	switch (q) {
-	case 1:cout << "Введите новое название: "; cin >> pe->title; showMovies(e); break;
-	case 2: cout << "Введите новый год выхода фильма: "; cin >> pe->year; showMovies(e); break;
-	case 3: cout << "Введите новый жанр фильма: "; cin >> pe->genre; showMovies(e); break;
-	case 4: cout << "Введите новую продолжительность фильма: "; cin >> pe->duration; showMovies(e); break;
-	case 5:cout << "Введите новую цену диска: "; cin >> pe->price; showMovies(e); break;
+	case 1:cout << "Введите новое название: "; cin >> e.title;break;
+	case 2: cout << "Введите новый год выхода фильма: "; cin >> e.year;break;
+	case 3: cout << "Введите новый жанр фильма: "; cin >> e.genre;break;
+	case 4: cout << "Введите новую продолжительность фильма: "; cin >>e.duration;break;
+	case 5:cout << "Введите новую цену диска: "; cin >> e.price;break;
 	default:cout << "!!!!ERROR!!!! *ошибка ввода*!!!!ERROR!!!!"<< endl; break;
 	}
-		
+	showMovies(e);
 }
 
 int main() {
@@ -52,7 +50,7 @@ int main() {
 
 	movies f1 = {"Форсаж",2001,"Боевик,триллер",94,745};
 	movies f2 = { "Терминатор 2",1991,"Фантастика,боевик,триллер",101,1250};
-	movies f3 = { "Рокки",1976,"Драма,спорт",120,1370 };
+	movies f3 = { "Рокки",1976,"Драма,спорт",120,13700 };
 	
 	cout << "Задача 1\n";
 	showMovies(f1);
@@ -62,7 +60,7 @@ int main() {
 
 	cout << "\n\nЗадача 3\n";
 	updateInfo(f1);
-		
+	
 
 
 
